@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Ramadhan Kareem e-card</title>
+  <link rel="stylesheet" href="ramd.css">
+
+
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="navbar">
+      <a href="home.html"><img src="images/Amazan-logo.png" class="logo"></a>
+      <nav>
+        <ul>
+          <li><a href="customise.html">CREATE YOUR OWN</a></li>
+          <li><a href="templates.html">OUR TEMPLATES</a></li>
+          <li><a href="favourites.html">SET FAVOURITE</a></li>
+          <li><a href="aboutus.html">ABOUT US</a></li>
+        </ul>
+      </nav>
+      <img src="images2/menu.png" class="menu-icon">
+    </div>
+
+
+
+
+    <div id="ramk">
+      <div>
+      </div>
+      <span id="display">Your name</span>
+      <a id="seemsg">Write your message below </a>
+      <a id="recnem">Receipient name</a>
+    </div>
+
+    <div id="Settings">
+      <h4>Settings</h4>
+      <div class="set">
+        <h4>Change Color</h4>
+        <button id="button">Change</button>
+      </div>
+      <!--<input type="text" id="name" placeholder="Your Name"><br>-->
+      <div class="bagascontainer">
+        <input type="text" id="inputname" placeholder="Your Name">
+        <br>
+        <input type="text" id="inputrecipient" placeholder="Receipient name">
+        <br>
+        <input type="text" name="" value="" id="inputmessage" rows="5" cols"10" placeholder="Write your message below">
+
+
+        <button id="save" onclick="getDisplay()">save</button><br>
+        <button  type="button" onclick="clearText()">clear</button><br>
+        <button  type="button" onclick="setFavorite()">Set As Favourite</button><br>
+        <button  type="button" onclick="loadFavoritetool">Set Favourites to Settings</button><br>
+        <button  type="button" onclick="previewBtn()">Preview</button><br>
+        <button  type="button" onclick="reset()">Reset to Default</button><br>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  let colors = ['#C1E1C1','#E0BBE4','#D291BC','#FFDFD3','#B0C7ED','#B8E1ED','#FCFC99','#FFFFCF','#C8A2C8'];
+
+  let button = document.getElementById('button');
+
+  button.addEventListener('click', function(){
+
+    var random = colors[Math.floor(Math.random() * colors.length)]
+
+    let container = document.getElementById('ramk');
+
+    container.style.background = random;
+    // to make container change colour randomly
+  })
+
+
+  function getDisplay(){
+    var user = document.getElementById("inputname").value;
+    var messages = document.getElementById("inputmessage").value;
+    var recp = document.getElementById("receipient").value;
+    document.getElementById("display").innerHTML = user;
+    document.getElementById("seemsg").innerHTML = messages;
+    document.getElementById("recnem").innerHTML = recp;
+
+    }
+
+    function clearText(){
+      let a="";
+      document.getElementById("inputname").value = a;
+      document.getElementById("inputmessage").value = a;
+      document.getElementById("inputrecipient").value = a;
+    }
+
+    function setFavorite(){
+      var user = document.getElementById("inputname").value;
+      var messages = document.getElementById("message").value;
+      var recp = document.getElementById("inputrecipient").value;
+
+      localStorage.setItem("name",user);
+      localStorage.setItem("message",messages);
+      localStorage.setItem("receipient",recp);
+    }
+    function loadFavoritetool(){
+    var user = document.getElementById("display").value = localStorage.getItem("name",user);
+    var messages = document.getElementById("seemsg").value = localStorage.getItem("message",messages);
+    var recp = document.getElementById("recnem").value = localStorage.getItem("receipient",recp);
+    }
+
+    function reset(){
+      location.reload();
+      localStorage.clear();
+    }
+
+  </script>
+</body>
+</html>
